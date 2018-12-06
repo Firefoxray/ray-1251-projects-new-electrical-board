@@ -2,7 +2,6 @@ package org.usfirst.frc.team1251.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -24,12 +23,19 @@ public class Robot extends IterativeRobot {
 
     //private PowerDistributionPanel pdp = new PowerDistributionPanel();
     private HumanInput humanInput;
+
+
+    //Subsystem Init
     private Gearbox gearbox;
     private SmallMotor smallMotor;
-    private MoveGearbox moveGearbox;
+    private MoveGearbox moveGearboxCmd;
+    private SmallMotor moveSmallMotorCmd;
+
+    //Command Init
     private MoveSmallMotor moveSmallMotor;
     private MovePiston movePiston;
-
+    private MoveGearbox moveGearbox;
+    private ShiftGearbox shiftGearbox;
 
 
 
@@ -54,29 +60,40 @@ public class Robot extends IterativeRobot {
         DeferredCmdSupplier<Command> gearboxDefaultCmdSupplier = new DeferredCmdSupplier<>();
         Gearbox gearbox = new Gearbox(gearboxDefaultCmdSupplier);
 
-        DeferredCmdSupplier<Command> smallmotorDefaultCmdSupplier = new DeferredCmdSupplier<>();
-        SmallMotor smallmotor = new SmallMotor(smallmotorDefaultCmdSupplier);
+        DeferredCmdSupplier<Command> smallMotorDefaultCmdSupplier = new DeferredCmdSupplier<>();
+        SmallMotor smallmotor = new SmallMotor(smallMotorDefaultCmdSupplier);
 
+        GearboxShifter gearboxShifter = new GearboxShifter(new DeferredCmdSupplier<>());
+        Piston piston = new Piston(new DeferredCmdSupplier<>());
 
         // Create commands
         MoveGearbox moveGearbox = new MoveGearbox(humanInput, gearbox);
-        MovePiston movePiston = new MovePiston();
         MoveSmallMotor moveSmallMotor = new MoveSmallMotor(humanInput, smallmotor);
+        ShiftGearbox shiftGearboxHigh= new ShiftGearbox(gearboxShifter, GearboxShifter.Gear.HIGH);
+        ShiftGearbox shiftGearboxLow = new ShiftGearbox(gearboxShifter, GearboxShifter.Gear.LOW);
+        MovePiston movePistonHigh = new MovePiston(piston, Piston.Gear.HIGH );
+        MovePiston movePistonLow = new MovePiston(piston, Piston.Gear.LOW );
 
         // Assign default commands
         gearboxDefaultCmdSupplier.set(moveGearbox);
-        smallmotorDefaultCmdSupplier.set(moveSmallMotor);
+        smallMotorDefaultCmdSupplier.set(moveSmallMotor);
 
 
         // assign driver-initiated command triggers.
-        humanInput.attachCommandTriggers(moveGearbox, movePiston, moveSmallMotor);
+        humanInput.attachCommandTriggers(shiftGearboxHigh, shiftGearboxLow, movePistonHigh, movePistonLow);
 
         this.humanInput = humanInput;
         this.gearbox = gearbox;
         this.smallMotor = smallmotor;
-        this.moveGearbox = moveGearbox;
-        this.moveSmallMotor = moveSmallMotor;
-        this.movePiston = movePiston;
+        //this.moveGearbox = moveGearbox;
+        //this.moveSmallMotor = moveSmallMotor;
+        this.shiftGearbox=shiftGearboxHigh;
+        this.shiftGearbox=shiftGearboxLow;
+        this.movePiston = movePistonHigh;
+        this.movePiston = movePistonLow;
+        this.moveGearboxCmd = moveGearbox;
+        this.moveSmallMotorCmd = moveSmallMotor;
+
     }
 
     /**
@@ -118,8 +135,8 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        this.moveGearbox.setDefaultCommand(this.moveGearboxCmd);
-        this.moveSmallMotor.setDefaultCommand(this.moveSmallMotorCmd);
+        this.gearbox.setDefaultCommand(this.moveGearboxCmd);
+        this.smallMotor.setDefaultCommand(this.moveSmallMotorCmd);
         MotorFactory.setBrakeMode(false);
     }
 

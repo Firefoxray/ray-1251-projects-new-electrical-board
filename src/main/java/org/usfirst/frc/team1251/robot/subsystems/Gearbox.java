@@ -19,8 +19,7 @@ public class Gearbox extends Subsystem {
 
     private final DeferredCmdSupplier<Command> defaultCommand;
 
-    public Gearbox(DeferredCmdSupplier<Command> defaultCommand)
-    {
+    public Gearbox(DeferredCmdSupplier<Command> defaultCommand){
         this.defaultCommand = defaultCommand;
 
         gearboxMotor1 = new Victor(RobotMap.GEARBOX_MOTOR_1);
