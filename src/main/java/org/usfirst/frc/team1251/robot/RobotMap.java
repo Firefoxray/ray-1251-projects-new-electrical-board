@@ -23,7 +23,7 @@ public class RobotMap {
     private static class PwmDevices {
         static final int MOTOR_GEARBOX_1 = 0;
         static final int MOTOR_GEARBOX_2 = 1;
-        static final int MOTOR_SMALL = 9;
+        static final int MOTOR_SMALL = 2;
     }
 
     private static class PcmDevices {
