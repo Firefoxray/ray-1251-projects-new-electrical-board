@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team1251.robot;
 
 import com.ctre.phoenix.motorcontrol.*;
@@ -113,15 +114,15 @@ public class MotorFactory {
             return leftMaster;
         }
 
-        leftMaster = createTalon(RobotMap.DRIVE_LEFT_LEAD_MOTOR, kDefaultConfiguration);
+        //leftMaster = createTalon(RobotMap.DRIVE_LEFT_LEAD_MOTOR, kDefaultConfiguration);
         leftMaster.setInverted(true); // backwards
 
         //leftMaster.configVoltageCompSaturation(9.5, 0);
         //master.configVoltageCompSaturation(kDefaultConfiguration.MAX_OUTPUT_VOLTAGE * SPEED_COMPENSATION_MULTIPLER, 0);
 
-        leftMotor1 = createVictor(RobotMap.DRIVE_LEFT_FOLLOW_MOTOR_1, kSlaveConfiguration);
-        leftMotor2 = createVictor(RobotMap.DRIVE_LEFT_FOLLOW_MOTOR_2, kSlaveConfiguration);
-        leftMotor3 = createVictor(RobotMap.DRIVE_LEFT_FOLLOW_MOTOR_3, kSlaveConfiguration);
+        //leftMotor1 = createVictor(RobotMap.DRIVE_LEFT_FOLLOW_MOTOR_1, kSlaveConfiguration);
+        //leftMotor2 = createVictor(RobotMap.DRIVE_LEFT_FOLLOW_MOTOR_2, kSlaveConfiguration);
+        //leftMotor3 = createVictor(RobotMap.DRIVE_LEFT_FOLLOW_MOTOR_3, kSlaveConfiguration);
 
         leftMotor1.setInverted(true);
         leftMotor2.setInverted(true);
@@ -154,13 +155,13 @@ public class MotorFactory {
             return rightMaster;
         }
 
-        rightMaster = createTalon(RobotMap.DRIVE_RIGHT_LEAD_MOTOR, kDefaultConfiguration);
+        //rightMaster = createTalon(RobotMap.DRIVE_RIGHT_LEAD_MOTOR, kDefaultConfiguration);
 
         //rightMaster.configVoltageCompSaturation(9.0 , 0);
-        rightMaster.configClosedloopRamp(0.25, 0);
-        rightMotor1 = createVictor(RobotMap.DRIVE_RIGHT_FOLLOW_MOTOR_1, kSlaveConfiguration);
-        rightMotor2 = createVictor(RobotMap.DRIVE_RIGHT_FOLLOW_MOTOR_2, kSlaveConfiguration);
-        rightMotor3 = createVictor(RobotMap.DRIVE_RIGHT_FOLLOW_MOTOR_3, kSlaveConfiguration);
+        //rightMaster.configClosedloopRamp(0.25, 0);
+        ///rightMotor1 = createVictor(RobotMap.DRIVE_RIGHT_FOLLOW_MOTOR_1, kSlaveConfiguration);
+        ///rightMotor2 = createVictor(RobotMap.DRIVE_RIGHT_FOLLOW_MOTOR_2, kSlaveConfiguration);
+        ///rightMotor3 = createVictor(RobotMap.DRIVE_RIGHT_FOLLOW_MOTOR_3, kSlaveConfiguration);
 
         rightMotor1.follow(rightMaster);
         rightMotor2.follow(rightMaster);

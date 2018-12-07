@@ -47,8 +47,8 @@ public class HumanInput {
 
         //Solenoid Triggers.
         this.shiftGearboxHighTrigger = new GamePadButtonTrigger(this.driverGamePad.x());
-        this.shiftGearboxLowTrigger = new GamePadButtonTrigger(this.driverGamePad.y());
-        this.movePistonOutTrigger = new GamePadButtonTrigger(this.driverGamePad.a());
+        this.shiftGearboxLowTrigger = new GamePadButtonTrigger(this.driverGamePad.a());
+        this.movePistonOutTrigger = new GamePadButtonTrigger(this.driverGamePad.y());
         this.movePistonInTrigger = new GamePadButtonTrigger(this.driverGamePad.b());
     }
 
@@ -63,11 +63,11 @@ public class HumanInput {
         commandTriggersAttached = true;
 
         // Bind buttons.
-        shiftGearboxHighTrigger.whenPressed(shiftGearboxHigh);
-        shiftGearboxLowTrigger.whenPressed(shiftGearboxLow);
+        shiftGearboxHighTrigger.whileHeld(shiftGearboxHigh);
+        shiftGearboxLowTrigger.whileHeld(shiftGearboxLow);
 
-        movePistonOutTrigger.whenPressed(movePistonOut);
-        movePistonInTrigger.whenPressed(movePistonIn);
+        movePistonOutTrigger.whileHeld(movePistonOut);
+        movePistonInTrigger.whileHeld(movePistonIn);
     }
 
     public double getGearboxForwardSpeed() {
@@ -80,7 +80,7 @@ public class HumanInput {
     }
 
     public double getGearboxReverseSpeed() {
-        double gearboxStick = driverGamePad.ls().getVertical(SMALL_MOTOR_DEAD_ZONE);
+        double gearboxStick = driverGamePad.ls().getVertical(GEARBOX_DEAD_ZONE);
         if (gearboxStick < 0){
             return Math.abs(gearboxStick);
         } else {

@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
     private Gearbox gearbox;
     private SmallMotor smallMotor;
     private MoveGearbox moveGearboxCmd;
-    private SmallMotor moveSmallMotorCmd;
+    private MoveSmallMotor moveSmallMotorCmd;
 
     //Command Init
     private MoveSmallMotor moveSmallMotor;
@@ -93,6 +93,7 @@ public class Robot extends IterativeRobot {
         this.movePiston = movePistonLow;
         this.moveGearboxCmd = moveGearbox;
         this.moveSmallMotorCmd = moveSmallMotor;
+        //this.moveSmallMotorCmd = moveSmallMotor;
 
     }
 
@@ -118,10 +119,11 @@ public class Robot extends IterativeRobot {
      * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
      * or additional comparisons to the switch structure below with additional strings & commands.
      */
-    public void autonomousInit() {
+    /**public void autonomousInit() {
         System.out.println("Auto Init");
         MotorFactory.setBrakeMode(false);
     }
+     **/
 
     /**
      * This function is called periodically during autonomous
@@ -137,7 +139,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         this.gearbox.setDefaultCommand(this.moveGearboxCmd);
         this.smallMotor.setDefaultCommand(this.moveSmallMotorCmd);
-        MotorFactory.setBrakeMode(false);
+        //MotorFactory.setBrakeMode(false);
     }
 
     /**

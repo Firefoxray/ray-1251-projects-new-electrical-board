@@ -9,6 +9,7 @@ public class MovePiston extends Command {
     private final DoubleSolenoidGearShifter.Gear goal;
 
     public MovePiston(Piston shifter, Piston.Gear goal) {
+
         this.shifter = shifter;
         this.goal = goal;
         this.setInterruptible(false);

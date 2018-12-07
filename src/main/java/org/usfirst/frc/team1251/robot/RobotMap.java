@@ -23,15 +23,15 @@ public class RobotMap {
     private static class PwmDevices {
         static final int MOTOR_GEARBOX_1 = 0;
         static final int MOTOR_GEARBOX_2 = 1;
-        static final int MOTOR_SMALL = 2;
+        static final int MOTOR_SMALL = 9;
     }
 
     private static class PcmDevices {
-        static final int SOLENOID_HIGH_GEARBOX_SHIFTER = 0;
-        static final int SOLENOID_LOW_GEARBOX_SHIFTER = 1;
+        static final int SOLENOID_HIGH_GEARBOX_SHIFTER = 2;
+        static final int SOLENOID_LOW_GEARBOX_SHIFTER = 5;
 
-        static final int SOLENOID_OUT_PISTON = 2;
-        static final int SOLENOID_IN_PISTON = 3;
+        static final int SOLENOID_OUT_PISTON = 3;
+        static final int SOLENOID_IN_PISTON = 4;
 
     }
 
